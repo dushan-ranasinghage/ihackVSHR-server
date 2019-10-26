@@ -7,7 +7,7 @@ const path = require('path');
 
 
 const usersRoutes = require('./api/routes/users');
-//const vehicleRegRoutes =require('./api/routes/vehicleRegistration');
+const vehicleRegRoutes =require('./api/routes/vehicleRegistration');
 //Atlas connection
 mongoose.connect('mongodb+srv://dushan:dushan123@dplcluster-erkzj.mongodb.net/ihack?retryWrites=true', { useNewUrlParser: true });
 
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 //Routes which starts server
 
 app.use('/users', usersRoutes);
-//app.use('/vehivlereg',vehicleRegRoutes)
+app.use('/vehiclereg',vehicleRegRoutes)
 
 //Error handling
 app.use((req, res, next) => {
