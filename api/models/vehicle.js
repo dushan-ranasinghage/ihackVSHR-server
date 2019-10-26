@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //the model data set needed and the correspoding collection
 const vehicleSchema = mongoose.Schema({
-    id:Number,
+   // id:Number,
     vehicle_reg_no:String,
     brand:String,
     model_no:String,
@@ -13,8 +13,8 @@ const vehicleSchema = mongoose.Schema({
     cost:Number,
     milage:Number,
     existing_condition:String,
-    service_center:String
-
+    service_center:String,
+    is_approved:Boolean
     
  
 },{ collection : 'vehiclehistory' });

@@ -5,8 +5,10 @@ const Vehicle = require('../models/vehicle')
 
 router.post('/', (req, res, next) => {
 console.log(req.body.vehicle_reg_no);
+
+
 const vehicle = new Vehicle({
-    id: 1,
+    //id: 1,
     vehicle_reg_no:req.body.vehicle_reg_no,
     brand:req.body. brand,
     model_no:req.body. model_no,
@@ -17,7 +19,8 @@ const vehicle = new Vehicle({
     cost:req.body.cost,
     milage:req.body.milage,
     existing_condition:req.body.existing_condition,
-    service_center:req.body.service_center
+    service_center:req.body.service_center,
+    is_approved:false
 });
 //console.log("hit");
 //console.log(vehicle);
@@ -31,7 +34,32 @@ res.status(201).json({
 });
 
 router.get('/', (req, res, next) => {
-    Vehicle.find().
+    Vehicle.find({ is_approved:false }).
+        exec().
+        then(docs => {
+            res.status(200).json(docs)
+        }).
+        catch(err => {
+            res.status(500).json({
+                error: err
+            });
+        })
+});
+
+router.patch('/vehicleno/:vehicleId', (req, res, next) => {
+    const vehRegNo = req.params.vehicleId;
+    Vehicle.update(
+
+        {
+            vehicle_reg_no : vehRegNo
+        },
+        {
+            $set :
+            {
+                is_approved:true
+            }
+        }
+    ).
         exec().
         then(docs => {
             res.status(200).json(docs)
