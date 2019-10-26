@@ -5,11 +5,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const productRoutes = require('./api/routes/products');
-const orderRoutes = require('./api/routes/orders');
 
+const usersRoutes = require('./api/routes/users');
+//const vehicleRegRoutes =require('./api/routes/vehicleRegistration');
 //Atlas connection
-mongoose.connect('mongodb+srv://dushan:dushan123@dplcluster-erkzj.mongodb.net/dplbags?retryWrites=true', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://dushan:dushan123@dplcluster-erkzj.mongodb.net/ihack?retryWrites=true', { useNewUrlParser: true });
 
 //Show route request info in console
 app.use(morgan('dev'));
@@ -37,9 +37,9 @@ app.use((req, res, next) => {
 });
 
 //Routes which starts server
-app.use('/products', productRoutes);
-app.use('/orders', orderRoutes);
 
+app.use('/users', usersRoutes);
+//app.use('/vehivlereg',vehicleRegRoutes)
 
 //Error handling
 app.use((req, res, next) => {
